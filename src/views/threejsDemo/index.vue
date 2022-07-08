@@ -10,6 +10,7 @@
 import * as THREE from "three"; //引入Threejs
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 export default {
   name: "threejsDemo",
   data() {
@@ -23,7 +24,8 @@ export default {
   },
   mounted() {
     this.init();
-    this.animate();
+    // this.animate();
+    this.loadOBJ();
   },
   methods: {
     //初始化
@@ -37,7 +39,10 @@ export default {
         color: "white"
       });
       this.mesh = new THREE.Mesh(geometry, material);
-      this.scene.add(this.mesh);
+      // this.scene.add(this.mesh);
+      //加坐标
+      let axisHelper = new THREE.AxisHelper(250);
+      this.scene.add(axisHelper);
 
       /**
        * 相机设置
@@ -68,6 +73,33 @@ export default {
       this.mesh.rotation.x += 0.01;
       this.mesh.rotation.y += 0.02;
       this.renderer.render(this.scene, this.camera);
+    },
+    // 加载obj文件
+    loadOBJ() {
+      let objLoader = new OBJLoader();
+      let obj1;
+      let _this = this;
+      // const materialScene = new THREE.MeshBasicMaterial({ color: 0x008000 });
+      objLoader.load(
+        "/static/male02.obj",
+        function(obj) {
+          // obj.material = materialScene;
+          //模型缩放
+          obj.scale.set(0.003, 0.003, 0.003);
+          // console.log("obj", obj);
+          _this.scene.add(obj);
+          // 光照
+          let ambient = new THREE.AmbientLight(0x008000);
+          _this.scene.add(ambient);
+          _this.animate();
+        },
+        function() {
+          console.log("导入模型成功");
+        },
+        function() {
+          console.log("导入模型失败");
+        }
+      );
     }
   }
 };
