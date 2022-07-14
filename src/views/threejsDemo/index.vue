@@ -8,7 +8,6 @@
 <script>
 //引入threejs
 import * as THREE from "three"; //引入Threejs
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
@@ -63,9 +62,11 @@ export default {
        * 创建渲染器对象
        */
       this.renderer = new THREE.WebGLRenderer();
-      // 这两个比较关键，不然就黑黢黢的
+      // 这个比较关键，不然就黑黢黢的,sRGB非线性编码
       this.renderer.outputEncoding = THREE.sRGBEncoding;
-      this.renderer.setPixelRatio(window.devicePixelRatio);
+      // 设置显示比例    window.devicePixelRatio像素大小的比例 ,设置的屏幕缩放比例
+      // this.renderer.setPixelRatio(window.devicePixelRatio);
+      
       this.renderer.setSize(window.innerWidth, window.innerHeight);
       container.appendChild(this.renderer.domElement);
 

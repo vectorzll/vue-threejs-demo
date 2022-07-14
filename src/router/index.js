@@ -1,19 +1,22 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-const home = () => import("views/home"); //账号管理
+const home = () => import("views/home"); //
 
 //基础demo菜单----------------------------------------------------
-const baseDemo = () => import("views/baseDemo"); //运营管理
+const baseDemo = () => import("views/baseDemo"); //基础demo
 //基础demo下的子菜单
-const cube = () => import("views/baseDemo/cube"); //CSP企业认证审核
-const arrowAndText = () => import("views/baseDemo/arrowAndText"); //订单管理
-const cubeLine = () => import("views/baseDemo/cubeLine"); //订单管理
+const cube = () => import("views/baseDemo/cube"); //旋转正方体
+const arrowAndText = () => import("views/baseDemo/arrowAndText"); //旋转箭头
+const cubeLine = () => import("views/baseDemo/cubeLine"); //正方体线团
 
-const advancedDemo = () => import("views/advancedDemo"); //用户管理
-const otherDemo = () => import("views/otherDemo"); //角色管理
+const advancedDemo = () => import("views/advancedDemo"); //进阶demo
+const various = () => import("views/advancedDemo/various"); //旋转正方体
 
-const threejsDemo = () => import("views/threejsDemo"); //账号管理
+
+const otherDemo = () => import("views/otherDemo"); //其他demo
+
+const threejsDemo = () => import("views/threejsDemo"); //3D模块
 
 const mainMenu = () => import("components/content/mainMenu");
 
@@ -56,7 +59,13 @@ const routes = [
       },
       {
         path: "advancedDemo", //进阶demo
-        component: advancedDemo
+        component: advancedDemo,
+        children: [
+          {
+            path: "various",
+            component: various
+          },
+        ]
       },
       {
         path: "otherDemo", //角色管理

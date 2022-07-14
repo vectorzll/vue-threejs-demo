@@ -5,7 +5,7 @@
       <home />
     </div> -->
     <!-- 导航栏 -->
-    <div class="main-menu" >
+    <div class="main-menu">
       <div class="menu-body">
         <div class="float-left logo"><span>threejs-demo</span></div>
         <div class="float-left">
@@ -18,7 +18,7 @@
             router
           >
             <!-- 菜单 -->
-            <el-submenu index="1 " hide-timeout="300000" >
+            <el-submenu index="1 " >
               <template slot="title">基础demo</template>
               <el-menu-item index="/manage/baseDemo/cube"
                 >旋转正方体</el-menu-item
@@ -30,13 +30,14 @@
                 >正方体线团</el-menu-item
               >
             </el-submenu>
+            <el-submenu index="2 " >
+              <template slot="title">进阶demo</template>
+              <el-menu-item index="/manage/advancedDemo/various"
+                >复合demo</el-menu-item
+              >
+            </el-submenu>
 
-            <el-menu-item index="/manage/advancedDemo" 
-              >进阶demo</el-menu-item
-            >
-            <el-menu-item index="/manage/otherDemo" 
-              >其他demo</el-menu-item
-            >
+            <el-menu-item index="/manage/otherDemo">其他demo</el-menu-item>
             <el-menu-item index="/manage/threejsdemo">3D模块</el-menu-item>
           </el-menu>
         </div>
@@ -54,15 +55,12 @@ import home from "views/home";
 export default {
   name: "mainMenu",
   data() {
-    return {
-    }
+    return {};
   },
-  mounted: function() {
-    
-  },
+  mounted: function () {},
   components: {
-    home
-  }
+    home,
+  },
 };
 </script>
 
